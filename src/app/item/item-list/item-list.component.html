@@ -1,29 +1,54 @@
-<!-- item-list.component.html -->
-<div class="item-list-container">
-  <button mat-raised-button color="primary" routerLink="/create">Crear Nuevo Item</button>
+<div class="item-list-container mat-elevation-z8">
+  <!-- Spinner de carga -->
+  <div *ngIf="isLoading" class="loading-spinner">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
 
-  <table mat-table [dataSource]="items" class="mat-elevation-z8">
+  <!-- Contenido principal -->
+  <div *ngIf="!isLoading">
+    <!-- Encabezado -->
+    <div class="header">
+      <h2>Lista de Items</h2>
+      <button mat-raised-button color="primary" routerLink="/create">
+        <mat-icon>add</mat-icon> Crear Nuevo Item
+      </button>
+    </div>
 
-    <ng-container matColumnDef="itemId">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let item"> {{item.itemId}} </td>
-    </ng-container>
+    <!-- Campo de filtro -->
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Filtrar por nombre</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Escribe para filtrar">
+    </mat-form-field>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let item"> {{item.name}} </td>
-    </ng-container>
+    <!-- Tabla -->
+    <table mat-table [dataSource]="filteredItems" class="custom-table">
+      <!-- Columna ID -->
+      <ng-container matColumnDef="itemId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let item"> {{item.itemId}} </td>
+      </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Acciones </th>
-      <td mat-cell *matCellDef="let item">
-        <button mat-button color="accent" [routerLink]="['/edit', item.itemId]">Editar</button>
-        <button mat-button color="warn" (click)="deleteItem(item.itemId)">Eliminar</button>
-      </td>
-    </ng-container>
+      <!-- Columna Nombre -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['itemId', 'name', 'actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['itemId', 'name', 'actions'];"></tr>
-  </table>
+      <!-- Columna Acciones -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let item">
+          <button mat-icon-button color="primary" [routerLink]="['/edit', item.itemId]" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteItem(item.itemId)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
+      <tr mat-header-row *matHeaderRowDef="['itemId', 'name', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['itemId', 'name', 'actions'];"></tr>
+    </table>
+  </div>
 </div>

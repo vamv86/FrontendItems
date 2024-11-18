@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.custom-table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.custom-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+mat-icon {
+  vertical-align: middle;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Altura fija mientras se carga */
+}
