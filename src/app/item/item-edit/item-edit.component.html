@@ -1,0 +1,14 @@
+<h2>Editar Item</h2>
+<form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del Item</mat-label>
+    <input matInput formControlName="name" required>
+      <mat-error *ngIf="itemForm.get('name')?.hasError('required')">
+        El nombre del item es obligatorio.
+      </mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="itemForm.invalid">Actualizar Item</button>
+    <button mat-button routerLink="">Cancelar</button>
+  </div>
+</form>

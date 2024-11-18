@@ -1,0 +1,18 @@
+# Usar la imagen oficial de Node.js
+FROM node:18
+
+# Crear directorio de trabajo
+WORKDIR /app
+
+# Instalar dependencias
+COPY package*.json ./
+RUN npm install
+
+# Copiar el código fuente
+COPY . .
+
+# Exponer el puerto en el que corre el servidor de desarrollo de Angular
+EXPOSE 4200
+
+# Comando para iniciar el servidor de desarrollo
+CMD ["npm", "start"]

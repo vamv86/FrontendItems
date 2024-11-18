@@ -1,0 +1,11 @@
+<!-- item-create.component.html -->
+<div class="item-form-container">
+  <h2>Crear Item</h2>
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" placeholder="Nombre del Item" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Crear</button>
+  </form>
+</div>

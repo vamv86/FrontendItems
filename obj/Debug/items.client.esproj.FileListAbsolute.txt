@@ -1,0 +1,2 @@
+C:\Users\HP VICTUS\source\repos\Items\items.client\obj\Debug\items.client.esproj.CoreCompileInputs.cache
+C:\Users\HP VICTUS\Documents\Proyectos\PruebaTecnica\ItemTest\items.client\obj\Debug\items.client.esproj.CoreCompileInputs.cache
